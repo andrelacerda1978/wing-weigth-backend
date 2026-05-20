@@ -1,0 +1,4 @@
+package br.com.wingweight.controller;
+import br.com.wingweight.model.WeightRecord; import br.com.wingweight.repository.WeightRecordRepository; import br.com.wingweight.service.WeightService; import jakarta.validation.Valid; import lombok.RequiredArgsConstructor; import org.springframework.data.jpa.repository.JpaRepository; import org.springframework.web.bind.annotation.*;
+@RestController @RequestMapping("/api/weights") @RequiredArgsConstructor
+public class WeightRecordController extends CrudController<WeightRecord>{ private final WeightRecordRepository repository; private final WeightService service; protected JpaRepository<WeightRecord,Long> repo(){return repository;} @Override @PostMapping public WeightRecord create(@Valid @RequestBody WeightRecord r){ return service.save(r);} @GetMapping("/flock/{id}/average") public Double average(@PathVariable Long id){return service.averageByFlock(id);} }

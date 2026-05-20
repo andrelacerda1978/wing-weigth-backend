@@ -1,0 +1,31 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Maven
+target/
+*.log
+dependency-reduced-pom.xml
+release.properties
+*.class
+
+# Spring Boot
+*.jar
+*.war
+*.ear
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Configurações específicas do ambiente
+application.properties
+application.yml
+.env
