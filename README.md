@@ -1,60 +1,189 @@
-# Wing Weight Backend - Java Spring Boot
+# Wing Weight Backend 🐔⚖️
 
-Backend criado para atender o Capítulo 7 do PIM: evidências de implementação do Back-End, testes e implantação.
+Backend do sistema inteligente de monitoramento e gestão aviária Wing Weight.
 
-## Funcionalidades
+---
+
+# 📌 Sobre o projeto
+
+O Wing Weight é uma plataforma desenvolvida para gerenciamento e monitoramento de produção aviária em tempo real.
+
+O sistema permite controlar:
+
+- aviários
+- lotes
+- balanças inteligentes
+- pesagens
+- alertas
+- usuários
+- dashboards operacionais
+
+A aplicação foi construída utilizando arquitetura REST com Spring Boot e PostgreSQL.
+
+---
+
+# 🚀 Tecnologias utilizadas
+
+## Backend
+- Java 17
+- Spring Boot
+- Spring Data JPA
+- Hibernate
+- Maven
+
+## Banco de dados
+- PostgreSQL
+
+## Documentação
+- Swagger OpenAPI
+
+## Infraestrutura
+- Docker
+- Git
+- GitHub
+
+---
+
+# 🎯 Funcionalidades
+
+## 🔐 Autenticação
+- Login de usuários
+- Controle de acesso por perfil
+- Controle de sessão
+- Usuários ADMIN, TECNICO e USUARIO
+
+## 👥 Usuários
 - Cadastro de usuários
+- Exclusão de usuários
+- Controle de permissões
+
+## 🏠 Aviários
 - Cadastro de aviários
-- Cadastro de lotes de aves
+- Associação de localização
+- Relacionamento com lotes
+- Relacionamento com balanças
+
+## 🐔 Lotes
+- Cadastro de lotes
+- Associação aos aviários
+- Controle de quantidade de aves
+
+## ⚖️ Balanças
 - Cadastro de balanças/dispositivos
-- Registro de pesagens com temperatura e umidade
-- Regras de alerta por peso mínimo/máximo
-- Geração automática de alerta quando uma pesagem fica fora do limite
-- Dashboard com total de aviários, lotes, registros, peso médio e alertas abertos
-- API documentada com Swagger
-- Banco H2 local
+- Associação obrigatória ao aviário
+- Controle ativo/inativo
+- Exclusão de dispositivos
 
-## Como rodar
+## 📊 Pesagens
+- Registro de pesagens
+- Histórico operacional
+- Dados simulados em tempo real
+
+## 🚨 Alertas
+- Geração automática de alertas
+- Monitoramento operacional
+
+## 📈 Dashboard
+- Total de aviários
+- Total de lotes
+- Total de pesagens
+- Alertas ativos
+- Peso médio
+
+---
+
+# 🗂️ Estrutura do projeto
+
 ```bash
+src/main/java/br/com/wingweight/
+ ├── controller/
+ ├── dto/
+ ├── entity/
+ ├── repository/
+ ├── security/
+ ├── service/
+ └── config/
+
+
+🔗 Relacionamentos do sistema
+Um aviário pode possuir vários lotes
+Um aviário pode possuir várias balanças
+Uma balança pertence a um aviário
+Um lote pertence a um aviário
+Um usuário possui perfil de acesso
+🐳 PostgreSQL com Docker
+Iniciar container
+docker start postgres-wingweight
+Acessar PostgreSQL
+docker exec -it postgres-wingweight psql -U postgres
+Selecionar banco
+\c meubanco
+
+▶️ Executando o projeto
+Rodar aplicação
 mvn spring-boot:run
-```
 
-Swagger:
-http://localhost:8080/swagger-ui.html
+Backend disponível em:
 
-Banco H2:
-http://localhost:8080/h2-console
+http://localhost:8080
 
-JDBC URL:
-jdbc:h2:file:./data/wingweightdb
+ Swagger
 
-## Endpoints principais
-- `/api/users`
-- `/api/aviaries`
-- `/api/flocks`
-- `/api/devices`
-- `/api/weights`
-- `/api/alert-rules`
-- `/api/alerts`
-- `/api/dashboard`
+Documentação da API:
 
-## Exemplo de JSON para cadastrar aviário
-```json
-{
-  "name": "Aviário 01",
-  "location": "Setor A",
-  "capacity": 5000,
-  "active": true
-}
-```
+http://localhost:8080/swagger-ui/index.html
 
-## Exemplo de JSON para registrar pesagem
-```json
-{
-  "weightKg": 1.85,
-  "temperature": 28.5,
-  "humidity": 65.0,
-  "flock": { "id": 1 },
-  "device": { "id": 1 }
-}
-```
+ Banco de dados
+
+Principais tabelas:
+
+users
+aviary
+flock
+scale_device
+weight_record
+alert
+alert_rule
+📌 Endpoints principais
+Autenticação
+POST /api/auth/login
+POST /api/auth/register
+Usuários
+GET    /api/users
+POST   /api/users
+DELETE /api/users/{id}
+Aviários
+GET    /api/aviaries
+POST   /api/aviaries
+DELETE /api/aviaries/{id}
+Lotes
+GET    /api/flocks
+POST   /api/flocks
+DELETE /api/flocks/{id}
+Balanças
+GET    /api/devices
+POST   /api/devices
+DELETE /api/devices/{id}
+
+ Melhorias futuras
+JWT + Spring Security
+Criptografia BCrypt
+Logs centralizados
+Dashboard avançado
+Relatórios PDF
+Exportação Excel
+WebSocket em tempo real
+Integração IoT
+Monitoramento online/offline das balanças
+Deploy cloud
+CI/CD
+
+Autor
+
+Andre Luis Lacerda
+
+GitHub:
+https://github.com/andrelacerda1978
+
+Repositório Backend:
+https://github.com/andrelacerda1978/wing-weigth-backend
