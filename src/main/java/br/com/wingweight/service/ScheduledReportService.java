@@ -17,7 +17,7 @@ public class ScheduledReportService {
     private final ReportService reportService;
     private final AviaryRepository aviaryRepository;
 
-    @Scheduled(cron = "*/30 * * * * *")
+    @Scheduled(cron = "0 59 23 * * *")
     public void generateDailyReports() {
         try {
             Path folder = Path.of("reports");
