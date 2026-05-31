@@ -1,1 +1,3 @@
-package br.com.wingweight.model; public enum Role { ADMIN, TECNICO, USUARIO }
+package br.com.wingweight.model;
+
+public enum Role {ADMIN, TECNICO, USUARIO}
